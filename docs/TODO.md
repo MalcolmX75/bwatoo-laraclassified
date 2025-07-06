@@ -111,6 +111,54 @@ Le projet Bwatoo LaraClassified Evolution a été développé avec succès avec 
 
 ---
 
+## 🚀 Optimisations Premium Ads (Priorité Élevée)
+
+> **Ref: [[OPTIMISATION-PREMIUM-ADS]]** - Améliorer UX, monétisation et adoption
+
+### 📅 **Phase 1 : Quick Wins (1 mois)**
+- [ ] **Simplifier promotions** : Réduire de 5 types à 3 niveaux (Bronze/Silver/Gold)
+- [ ] **Système crédits basique** : Monnaie universelle pour toutes promotions
+- [ ] **Analytics vendeur** : Dashboard simple avec vues/contacts/ROI
+- [ ] **WhatsApp notifications** : Alertes expiration et nouveaux messages
+- [ ] **Bundles packages** : Offres combinées (ex: 5 Bumps + 1 Featured)
+
+### 📅 **Phase 2 : Core Features (3 mois)**
+- [ ] **Dynamic pricing** : Prix variables selon catégorie/localisation/période
+- [ ] **Mobile Money base** : Intégration Orange Money + MTN (2-3 pays test)
+- [ ] **Gamification** : Badges vendeur et leaderboards par catégorie
+- [ ] **A/B testing** : Framework test automatique titres/prix
+- [ ] **Subscription hybride** : Crédits inclus dans abonnements Basic/Pro/Business
+
+### 📅 **Phase 3 : Advanced (6 mois)**
+- [ ] **Auction system** : Enchères pour Top Ads avec prix dynamiques
+- [ ] **USSD platform** : Commandes promotion via *123# (feature phones)
+- [ ] **AI recommendations** : Suggestions intelligentes boost optimal
+- [ ] **Vouchers offline** : Cartes grattables en kiosques/stations service
+- [ ] **Social proof** : Reviews, ratings, trust score vendeurs
+
+### 📅 **Phase 4 : Scale (12 mois)**
+- [ ] **Mobile Money complet** : 15+ providers (Orange, MTN, Airtel, M-Pesa)
+- [ ] **WhatsApp Pay** : Paiement intégré via WhatsApp Business
+- [ ] **Blockchain rewards** : Système de points décentralisé
+- [ ] **Franchise model** : Revendeurs crédits par région
+- [ ] **Voice commerce** : Commandes vocales pour analphabètes
+
+### 🎯 **KPIs Optimisation Premium Ads**
+- [ ] **Taux conversion Free→Paid** : 5% → 25% (12 mois)
+- [ ] **ARPU** : 2€ → 10€ par utilisateur actif
+- [ ] **Promotions/User** : 0.5 → 5 par mois
+- [ ] **Mobile Money adoption** : 60% transactions Afrique
+- [ ] **User satisfaction** : NPS 70+ avec nouveau système
+
+### 🔧 **Refactoring Architecture**
+- [ ] **Unification systèmes** : Merger Subscriptions + Packages + Premium Ads
+- [ ] **Credits engine** : Service centralisé gestion crédits universels
+- [ ] **Pricing engine** : Module calcul prix dynamiques multi-variables
+- [ ] **Notification center** : Hub WhatsApp/SMS/Email unifié
+- [ ] **Analytics warehouse** : Data lake pour insights IA
+
+---
+
 ## 🔧 Maintenance et Améliorations Continues
 
 ### 🛠️ **Maintenance Technique**
