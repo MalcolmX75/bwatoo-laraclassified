@@ -1,0 +1,119 @@
+# Laravel
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+.env
+.env.backup
+.phpunit.result.cache
+docker-compose.override.yml
+Homestead.json
+Homestead.yaml
+npm-debug.log*
+yarn-error.log*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+laravel.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# Dependency directories
+node_modules/
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# Composer
+composer.phar
+/vendor/
+
+# Laravel specific
+/bootstrap/compiled.php
+/bootstrap/cache
+/.env.*.php
+/.env.php
+/.env
+/storage/debugbar
+/storage/logs/*.log
+/storage/framework/cache/*
+!/storage/framework/cache/.gitkeep
+/storage/framework/sessions/*
+!/storage/framework/sessions/.gitkeep
+/storage/framework/views/*
+!/storage/framework/views/.gitkeep
+
+# Rocketeer PHP task runner and deployment package. https://github.com/rocketeers/rocketeer
+.rocketeer/
+
+# User-uploaded assets (should be served by a CDN in production)
+/public/uploads/
+/public/files/
+
+# Laravel Horizon
+/public/vendor/horizon/
+
+# PHP CS Fixer
+.php_cs
+.php_cs.cache
+
+# PHPUnit
+.phpunit.result.cache
+/coverage/
+
+# Laravel Mix
+/public/css/
+/public/js/
+mix-manifest.json
+
+# Laravel Nova
+/nova/
+
+# Local development
+/public/mix-manifest.json
+webpack-stats.json
+
+# Temporary files
+*.tmp
+*.temp
+
+# Security
+*.key
+*.pem
+.env.example.local
+
+# Large zip files
+*.zip
+*.tar.gz

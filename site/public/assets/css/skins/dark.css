@@ -1,0 +1,110 @@
+@charset "utf-8";
+
+/*
+ * Skin: Dark (Required)
+ * ------------------------
+ * #4682b4
+ * #ebebeb (Links)
+ */
+
+/* ===> DARK BUTTON TYPES COLORS <=== */
+
+/* --- FROM: style.css -------------------------------------------------- */
+/*
+html[theme="dark"] body {
+	color: var(--text-color);
+	background-color: var(--background--darker);
+}
+*/
+
+html[theme="dark"] .skin a:not(.btn),
+html[theme="dark"] a.link-primary {
+	color: rgba(var(--bs-emphasis-color-rgb), var(--bs-link-opacity, 1)) !important;
+}
+html[theme="dark"] .skin a:not(.btn):hover,
+html[theme="dark"] .skin a:not(.btn):focus,
+html[theme="dark"] a.link-primary:hover,
+html[theme="dark"] a.link-primary:focus {
+	color: rgba(var(--bs-emphasis-color-rgb), var(--bs-link-opacity, .75)) !important;
+	text-decoration-color: rgba(var(--bs-emphasis-color-rgb), var(--bs-link-underline-opacity, .75)) !important;
+}
+
+/* btn-listing */
+html[theme="dark"] .btn-listing {
+	color: #333 !important;
+	background-image: linear-gradient(to bottom, #ffeb43 0%, #fcde11 100%);
+	background-color: #fff447;
+	border: 1px solid #f6d80f;
+	box-shadow: 0 1px 1px 0 #ffbf4b;
+}
+html[theme="dark"] .btn-listing:hover,
+html[theme="dark"] .btn-listing:focus {
+	color: #333 !important;
+}
+
+/* bootstrap-fileinput */
+html[theme="dark"] .file-preview {
+	border-color: var(--bs-border-color);
+}
+
+/* select2 */
+html[theme="dark"] .select2-dropdown {
+	background-color: var(--bs-body-bg);
+}
+html[theme="dark"] .select2-container--default .select2-selection--single,
+html[theme="dark"] .select2-dropdown {
+	color: var(--bs-body-color);
+	background-color: var(--bs-body-bg);
+}
+html[theme="dark"] .select2-container--default .select2-selection--single .select2-selection__rendered {
+	color: var(--bs-body-color);
+}
+html[theme="dark"] .select2-container--default .select2-selection--multiple {
+	background-color: var(--bs-body-bg);
+}
+html[theme="dark"] .select2-container--default .select2-selection--multiple .select2-selection__choice {
+	color: var(--bs-dark-text-emphasis);
+}
+
+/* select2-bootstrap3-theme */
+html[theme="dark"] .select2-container--bootstrap .select2-selection {
+	background-color: var(--bs-body-bg);
+	color: var(--bs-body-color);
+}
+html[theme="dark"] .select2-container--bootstrap .select2-selection--single .select2-selection__rendered {
+	color: var(--bs-body-color);
+}
+
+/* select2-bootstrap5-theme */
+html[theme="dark"] .select2-container--bootstrap-5 .select2-selection {
+	color: var(--bs-body-color);
+	background-color: var(--bs-body-bg);
+	border: var(--bs-border-width) solid var(--bs-border-color);
+}
+html[theme="dark"] .select2-container--bootstrap-5 .select2-selection--single .select2-selection__rendered {
+	color: var(--bs-body-color);
+}
+html[theme="dark"] .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice {
+	color: var(--bs-body-color);
+}
+html[theme="dark"] .select2-container--bootstrap-5 .select2-dropdown .select2-results__options .select2-results__option.select2-results__option--highlighted {
+	color: var(--bs-light-text-emphasis);
+	background-color: var(--bs-light-bg-subtle);
+}
+html[theme="dark"] .select2-container--bootstrap-5 .select2-dropdown .select2-search .select2-search__field {
+	color: var(--bs-body-color);
+	background-color: var(--bs-body-bg);
+	border: var(--bs-border-width) solid var(--bs-border-color);
+}
+
+/* swiper */
+html[theme="dark"] .swiper.main-gallery {
+	-moz-box-shadow: 0 0 5px var(--bs-dark-bg-subtle);
+	-webkit-box-shadow: 0 0 5px var(--bs-dark-bg-subtle);
+	box-shadow: 0 0 5px var(--bs-dark-bg-subtle);
+	border-color: var(--bs-dark-bg-subtle);
+	background: var(--bs-dark-bg-subtle);
+}
+html[theme="dark"] .swiper-slide {
+	background-color: var(--bs-dark-bg-subtle);
+}
