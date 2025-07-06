@@ -29,6 +29,7 @@ use App\Http\Controllers\Web\Admin\Panel\Library\Traits\Models\Crud;
 use App\Models\Post\ReviewsPlugin;
 use App\Models\Post\SimilarByCategory;
 use App\Models\Post\SimilarByLocation;
+use App\Models\PostPromotion;
 use App\Models\Scopes\LocalizedScope;
 use App\Models\Scopes\ReviewedScope;
 use App\Models\Scopes\StrictActiveScope;
@@ -343,6 +344,19 @@ class Post extends BaseModel implements Feedable
 	public function subscription(): BelongsTo
 	{
 		return $this->belongsTo(Payment::class, 'payment_id');
+	}
+	
+	public function promotions(): HasMany
+	{
+		return $this->hasMany(PostPromotion::class, 'post_id');
+	}
+	
+	public function activePromotions(): HasMany
+	{
+		return $this->hasMany(PostPromotion::class, 'post_id')
+			->where('status', 'active')
+			->where('start_date', '<=', now())
+			->where('end_date', '>=', now());
 	}
 	
 	/*
@@ -838,5 +852,89 @@ class Post extends BaseModel implements Feedable
 		};
 		
 		return (string)$result;
+	}
+	
+	/*
+	|--------------------------------------------------------------------------
+	| PROMOTION HELPER METHODS
+	|--------------------------------------------------------------------------
+	*/
+	
+	/**
+	 * Check if post has active promotion of specific type
+	 */
+	public function hasActivePromotion(string $type): bool
+	{
+		return $this->activePromotions()
+			->where('promotion_type', $type)
+			->exists();
+	}
+	
+	/**
+	 * Check if post is bumped (active bump promotion)
+	 */
+	public function isBumped(): bool
+	{
+		return $this->hasActivePromotion('bump');
+	}
+	
+	/**
+	 * Check if post is a top ad (active top promotion)
+	 */
+	public function isTopAd(): bool
+	{
+		return $this->hasActivePromotion('top');
+	}
+	
+	/**
+	 * Check if post is featured (active featured promotion)
+	 */
+	public function isFeatured(): bool
+	{
+		return $this->hasActivePromotion('featured');
+	}
+	
+	/**
+	 * Check if post is urgent (active urgent promotion)
+	 */
+	public function isUrgent(): bool
+	{
+		return $this->hasActivePromotion('urgent');
+	}
+	
+	/**
+	 * Check if post is highlighted (active highlight promotion)
+	 */
+	public function isHighlighted(): bool
+	{
+		return $this->hasActivePromotion('highlight');
+	}
+	
+	/**
+	 * Get active promotion of specific type
+	 */
+	public function getActivePromotion(string $type): ?PostPromotion
+	{
+		return $this->activePromotions()
+			->where('promotion_type', $type)
+			->first();
+	}
+	
+	/**
+	 * Get all active promotion types for this post
+	 */
+	public function getActivePromotionTypes(): array
+	{
+		return $this->activePromotions()
+			->pluck('promotion_type')
+			->toArray();
+	}
+	
+	/**
+	 * Check if post has any active promotions
+	 */
+	public function hasAnyActivePromotion(): bool
+	{
+		return $this->activePromotions()->exists();
 	}
 }

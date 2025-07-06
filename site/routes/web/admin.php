@@ -39,6 +39,7 @@ use App\Http\Controllers\Web\Admin\PermissionController;
 use App\Http\Controllers\Web\Admin\PictureController;
 use App\Http\Controllers\Web\Admin\PluginController;
 use App\Http\Controllers\Web\Admin\PostController;
+use App\Http\Controllers\Web\Admin\PostPromotionController;
 use App\Http\Controllers\Web\Admin\ReportTypeController;
 use App\Http\Controllers\Web\Admin\RoleController;
 use App\Http\Controllers\Web\Admin\SettingController;
@@ -112,10 +113,21 @@ Route::middleware(['admin', 'clearance', 'banned.user', 'no.http.cache'])
 		PanelRoutes::resource('permissions', PermissionController::class);
 		PanelRoutes::resource('pictures', PictureController::class);
 		PanelRoutes::resource('posts', PostController::class);
+		PanelRoutes::resource('post_promotions', PostPromotionController::class);
 		PanelRoutes::resource('report_types', ReportTypeController::class);
 		PanelRoutes::resource('roles', RoleController::class);
 		PanelRoutes::resource('settings', SettingController::class);
 		PanelRoutes::resource('users', UserController::class);
+		
+		// Post Promotions Actions
+		Route::controller(PostPromotionController::class)
+			->group(function ($router) {
+				Route::post('post_promotions/{id}/activate', 'activate')->name('post_promotions.activate');
+				Route::post('post_promotions/{id}/expire', 'expire')->name('post_promotions.expire');
+				Route::post('post_promotions/{id}/cancel', 'cancel')->name('post_promotions.cancel');
+				Route::get('post_promotions/stats', 'stats')->name('post_promotions.stats');
+				Route::post('post_promotions/expire-expired', 'expireExpired')->name('post_promotions.expire_expired');
+			});
 		
 		// Others
 		Route::get('account', [UserController::class, 'account']);

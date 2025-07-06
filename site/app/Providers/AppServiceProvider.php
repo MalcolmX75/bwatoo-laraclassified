@@ -45,7 +45,9 @@ class AppServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
-		//
+		// Register Post Promotion Services
+		$this->app->singleton(\App\Services\PostPromotionService::class);
+		$this->app->singleton(\App\Services\PostPromotionPaymentService::class);
 	}
 	
 	/**
