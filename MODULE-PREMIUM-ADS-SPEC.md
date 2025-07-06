@@ -121,28 +121,83 @@ CREATE TABLE lc_promotion_analytics (
 
 ### 2. Nouveaux Packages Premium
 
-#### Configuration des Packages Premium
+#### Configuration des Packages Premium avec Support Multilingue
 ```php
-// Configuration via Seeder
+// Configuration via Seeder - Compatible système LaraClassified
 $premiumPackages = [
     [
         'type' => 'promotion',
-        'name' => '{"en": "Bump Up", "fr": "Remonter"}',
-        'short_name' => 'bump',
+        'name' => json_encode([
+            'en' => 'Bump Up',
+            'fr' => 'Remonter',
+            'es' => 'Subir',
+            'ar' => 'رفع الإعلان',
+            'pt' => 'Promover',
+            'de' => 'Nach oben',
+            'it' => 'Promuovi',
+            'ru' => 'Поднять',
+            'zh' => '置顶',
+            'ja' => 'アップ'
+        ]),
+        'short_name' => json_encode([
+            'en' => 'Bump',
+            'fr' => 'Boost',
+            'es' => 'Subir',
+            'ar' => 'رفع',
+            'pt' => 'Subir',
+            'de' => 'Hoch',
+            'it' => 'Su',
+            'ru' => 'Вверх',
+            'zh' => '顶',
+            'ja' => 'アップ'
+        ]),
         'price' => 2.00,
-        'promotion_time' => 1, // 1 jour de remontée
+        'promotion_time' => 1,
         'promotion_features' => json_encode([
             'bump_frequency' => 'once_per_week',
             'notification_subscribers' => true,
             'recently_updated_badge' => true
         ]),
-        'description' => '{"en": "Push your ad to the top", "fr": "Remontez votre annonce en tête"}',
+        'description' => json_encode([
+            'en' => 'Push your ad back to the top of listings as if it was just posted',
+            'fr' => 'Remontez votre annonce en tête des listes comme si elle venait d\'être publiée',
+            'es' => 'Sube tu anuncio a la parte superior de las listas como si acabara de ser publicado',
+            'ar' => 'ادفع إعلانك إلى أعلى القوائم كما لو تم نشره للتو',
+            'pt' => 'Empurre seu anúncio de volta ao topo das listagens como se tivesse acabado de ser postado',
+            'de' => 'Schieben Sie Ihre Anzeige an die Spitze der Listen, als wäre sie gerade veröffentlicht worden',
+            'it' => 'Spingi il tuo annuncio in cima agli elenchi come se fosse stato appena pubblicato',
+            'ru' => 'Поднимите свое объявление в топ списков, как будто оно только что было размещено',
+            'zh' => '将您的广告推回列表顶部，就像刚刚发布一样',
+            'ja' => '投稿したばかりのように、広告をリストのトップに押し上げます'
+        ]),
         'ribbon' => '#28a745'
     ],
     [
         'type' => 'promotion',
-        'name' => '{"en": "Top Ad", "fr": "TOP"}',
-        'short_name' => 'top',
+        'name' => json_encode([
+            'en' => 'Top Ad',
+            'fr' => 'Annonce TOP',
+            'es' => 'Anuncio TOP',
+            'ar' => 'إعلان مميز',
+            'pt' => 'Anúncio TOP',
+            'de' => 'Top-Anzeige',
+            'it' => 'Annuncio TOP',
+            'ru' => 'Топ объявление',
+            'zh' => '顶级广告',
+            'ja' => 'トップ広告'
+        ]),
+        'short_name' => json_encode([
+            'en' => 'TOP',
+            'fr' => 'TOP',
+            'es' => 'TOP',
+            'ar' => 'الأول',
+            'pt' => 'TOP',
+            'de' => 'TOP',
+            'it' => 'TOP',
+            'ru' => 'ТОП',
+            'zh' => '顶级',
+            'ja' => 'トップ'
+        ]),
         'price' => 15.00,
         'promotion_time' => 7,
         'top_position_guaranteed' => true,
@@ -151,13 +206,47 @@ $premiumPackages = [
             'category_top_display' => true,
             'search_priority' => 'high'
         ]),
+        'description' => json_encode([
+            'en' => 'Guarantee your ad appears at the top of search results and category pages',
+            'fr' => 'Garantissez que votre annonce apparaisse en haut des résultats de recherche et des pages de catégories',
+            'es' => 'Garantiza que tu anuncio aparezca en la parte superior de los resultados de búsqueda y páginas de categorías',
+            'ar' => 'اضمن ظهور إعلانك في أعلى نتائج البحث وصفحات الفئات',
+            'pt' => 'Garanta que seu anúncio apareça no topo dos resultados de pesquisa e páginas de categoria',
+            'de' => 'Garantieren Sie, dass Ihre Anzeige oben in den Suchergebnissen und Kategorieseiten erscheint',
+            'it' => 'Garantisci che il tuo annuncio appaia in cima ai risultati di ricerca e alle pagine delle categorie',
+            'ru' => 'Гарантируйте, что ваше объявление появится вверху результатов поиска и страниц категорий',
+            'zh' => '保证您的广告出现在搜索结果和分类页面的顶部',
+            'ja' => '検索結果とカテゴリページの上部に広告が表示されることを保証します'
+        ]),
         'ribbon' => '#dc3545',
         'has_badge' => true
     ],
     [
         'type' => 'promotion',
-        'name' => '{"en": "Featured", "fr": "À la Une"}',
-        'short_name' => 'featured',
+        'name' => json_encode([
+            'en' => 'Featured',
+            'fr' => 'À la Une',
+            'es' => 'Destacado',
+            'ar' => 'مميز',
+            'pt' => 'Em Destaque',
+            'de' => 'Empfohlen',
+            'it' => 'In Evidenza',
+            'ru' => 'Рекомендуемое',
+            'zh' => '精选',
+            'ja' => '注目'
+        ]),
+        'short_name' => json_encode([
+            'en' => 'Featured',
+            'fr' => 'Une',
+            'es' => 'Destacado',
+            'ar' => 'مميز',
+            'pt' => 'Destaque',
+            'de' => 'Empfohlen',
+            'it' => 'Evidenza',
+            'ru' => 'Рекомендуемое',
+            'zh' => '精选',
+            'ja' => '注目'
+        ]),
         'price' => 25.00,
         'promotion_time' => 14,
         'promotion_features' => json_encode([
@@ -166,13 +255,47 @@ $premiumPackages = [
             'social_auto_share' => true,
             'priority_search' => 'highest'
         ]),
+        'description' => json_encode([
+            'en' => 'Maximum exposure with homepage display, newsletter inclusion and social media sharing',
+            'fr' => 'Exposition maximale avec affichage en page d\'accueil, inclusion newsletter et partage réseaux sociaux',
+            'es' => 'Máxima exposición con visualización en página de inicio, inclusión en boletín y compartir en redes sociales',
+            'ar' => 'أقصى تعرض مع عرض الصفحة الرئيسية وإدراج النشرة الإخبارية ومشاركة وسائل التواصل الاجتماعي',
+            'pt' => 'Máxima exposição com exibição na página inicial, inclusão na newsletter e compartilhamento em redes sociais',
+            'de' => 'Maximale Belichtung mit Homepage-Anzeige, Newsletter-Aufnahme und Social-Media-Sharing',
+            'it' => 'Massima esposizione con visualizzazione homepage, inclusione newsletter e condivisione social media',
+            'ru' => 'Максимальная экспозиция с отображением на главной странице, включением в рассылку и публикацией в социальных сетях',
+            'zh' => '最大程度的曝光，包括主页显示、新闻通讯包含和社交媒体分享',
+            'ja' => 'ホームページ表示、ニュースレター掲載、ソーシャルメディア共有による最大限の露出'
+        ]),
         'ribbon' => '#ffc107',
         'has_badge' => true
     ],
     [
         'type' => 'promotion',
-        'name' => '{"en": "Urgent", "fr": "Urgent"}',
-        'short_name' => 'urgent',
+        'name' => json_encode([
+            'en' => 'Urgent',
+            'fr' => 'Urgent',
+            'es' => 'Urgente',
+            'ar' => 'عاجل',
+            'pt' => 'Urgente',
+            'de' => 'Dringend',
+            'it' => 'Urgente',
+            'ru' => 'Срочно',
+            'zh' => '紧急',
+            'ja' => '緊急'
+        ]),
+        'short_name' => json_encode([
+            'en' => 'Urgent',
+            'fr' => 'Urgent',
+            'es' => 'Urgente',
+            'ar' => 'عاجل',
+            'pt' => 'Urgente',
+            'de' => 'Dringend',
+            'it' => 'Urgente',
+            'ru' => 'Срочно',
+            'zh' => '紧急',
+            'ja' => '緊急'
+        ]),
         'price' => 5.00,
         'promotion_time' => 3,
         'urgent_badge_color' => '#ff0000',
@@ -180,26 +303,150 @@ $premiumPackages = [
             'urgent_badge' => true,
             'blink_effect' => true,
             'priority_notifications' => true
+        ]),
+        'description' => json_encode([
+            'en' => 'Add an urgent badge to grab immediate attention from potential buyers',
+            'fr' => 'Ajoutez un badge urgent pour attirer immédiatement l\'attention des acheteurs potentiels',
+            'es' => 'Agrega una insignia urgente para llamar la atención inmediata de compradores potenciales',
+            'ar' => 'أضف شارة عاجل لجذب الانتباه الفوري من المشترين المحتملين',
+            'pt' => 'Adicione um distintivo urgente para chamar atenção imediata de compradores em potencial',
+            'de' => 'Fügen Sie ein dringendes Abzeichen hinzu, um sofortige Aufmerksamkeit von potenziellen Käufern zu erhalten',
+            'it' => 'Aggiungi un badge urgente per attirare l\'attenzione immediata di potenziali acquirenti',
+            'ru' => 'Добавьте значок срочности, чтобы привлечь немедленное внимание потенциальных покупателей',
+            'zh' => '添加紧急徽章以立即吸引潜在买家的注意',
+            'ja' => '潜在的な購入者からの即座の注意を引くために緊急バッジを追加'
         ])
     ],
     [
         'type' => 'promotion',
-        'name' => '{"en": "Highlight", "fr": "Surligner"}',
-        'short_name' => 'highlight',
+        'name' => json_encode([
+            'en' => 'Highlight',
+            'fr' => 'Surligner',
+            'es' => 'Destacar',
+            'ar' => 'تمييز',
+            'pt' => 'Destacar',
+            'de' => 'Hervorheben',
+            'it' => 'Evidenziare',
+            'ru' => 'Выделить',
+            'zh' => '突出显示',
+            'ja' => 'ハイライト'
+        ]),
+        'short_name' => json_encode([
+            'en' => 'Highlight',
+            'fr' => 'Surligner',
+            'es' => 'Destacar',
+            'ar' => 'تمييز',
+            'pt' => 'Destacar',
+            'de' => 'Hervorheben',
+            'it' => 'Evidenziare',
+            'ru' => 'Выделить',
+            'zh' => '高亮',
+            'ja' => 'ハイライト'
+        ]),
         'price' => 3.00,
         'promotion_time' => 5,
         'highlight_color' => '#ffff00',
         'promotion_features' => json_encode([
             'background_highlight' => true,
             'border_glow' => true
+        ]),
+        'description' => json_encode([
+            'en' => 'Make your ad stand out with background highlighting and border glow effects',
+            'fr' => 'Faites ressortir votre annonce avec un arrière-plan surligné et des effets de bordure brillante',
+            'es' => 'Haz que tu anuncio destaque con resaltado de fondo y efectos de brillo en el borde',
+            'ar' => 'اجعل إعلانك يبرز مع تمييز الخلفية وتأثيرات توهج الحدود',
+            'pt' => 'Faça seu anúncio se destacar com destaque de fundo e efeitos de brilho na borda',
+            'de' => 'Lassen Sie Ihre Anzeige mit Hintergrund-Hervorhebung und Randglühen-Effekten auffallen',
+            'it' => 'Fai risaltare il tuo annuncio con evidenziazione dello sfondo e effetti di bagliore del bordo',
+            'ru' => 'Выделите свое объявление с помощью подсветки фона и эффектов свечения границ',
+            'zh' => '通过背景突出显示和边框发光效果让您的广告脱颖而出',
+            'ja' => '背景のハイライトとボーダーグロー効果で広告を目立たせる'
         ])
     ]
 ];
 ```
 
-### 3. Modèles Laravel
+### 3. Fichiers de Traduction
 
-#### Model : `PostPromotion`
+#### Fichier : `/lang/{locale}/premium_ads.php`
+```php
+<?php
+// Traductions pour le module Premium Ads
+return [
+    'premium_ads' => 'Premium Ads',
+    'promotion_options' => 'Options de promotion',
+    'boost_your_ad' => 'Boostez votre annonce',
+    'select_promotion' => 'Choisissez votre promotion',
+    
+    // Types de promotion
+    'bump_up' => 'Remonter',
+    'top_ad' => 'Annonce TOP',
+    'featured' => 'À la Une',
+    'urgent' => 'Urgent',
+    'highlight' => 'Surligner',
+    
+    // Actions
+    'activate_for' => 'Activer pour :price€',
+    'purchase_promotion' => 'Acheter la promotion',
+    'extend_promotion' => 'Prolonger la promotion',
+    'cancel_promotion' => 'Annuler la promotion',
+    
+    // Statuts
+    'promotion_active' => 'Promotion active',
+    'promotion_expired' => 'Promotion expirée',
+    'promotion_pending' => 'Promotion en attente',
+    'expires_in' => 'Expire dans :days jour(s)',
+    'expired_on' => 'Expiré le :date',
+    
+    // Caractéristiques
+    'duration' => 'Durée',
+    'benefits' => 'Avantages',
+    'price' => 'Prix',
+    'features_included' => 'Fonctionnalités incluses',
+    
+    // Messages
+    'promotion_activated' => 'Votre promotion a été activée avec succès !',
+    'promotion_error' => 'Erreur lors de l\'activation de la promotion',
+    'insufficient_funds' => 'Fonds insuffisants pour cette promotion',
+    'already_promoted' => 'Cette annonce a déjà une promotion active de ce type',
+    
+    // Analytics
+    'views_count' => 'Nombre de vues',
+    'clicks_count' => 'Nombre de clics',
+    'conversion_rate' => 'Taux de conversion',
+    'performance' => 'Performance',
+];
+```
+
+#### Intégration aux fichiers existants
+```php
+// Ajouter à /lang/{locale}/admin.php
+'premium_ads' => [
+    'menu_title' => 'Premium Ads',
+    'promotion_types' => 'Types de promotion',
+    'active_promotions' => 'Promotions actives',
+    'revenue_report' => 'Rapport des revenus',
+    'manage_packages' => 'Gérer les packages',
+],
+
+// Ajouter à /lang/{locale}/global.php  
+'promotion_features' => [
+    'fixed_top_position' => 'Position fixe en tête',
+    'homepage_display' => 'Affichage page d\'accueil', 
+    'newsletter_inclusion' => 'Inclusion newsletter',
+    'social_auto_share' => 'Partage automatique réseaux sociaux',
+    'urgent_badge' => 'Badge urgent',
+    'background_highlight' => 'Surbrillance arrière-plan',
+    'border_glow' => 'Effet de bordure brillante',
+    'bump_frequency' => 'Fréquence de remontée',
+    'notification_subscribers' => 'Notification abonnés',
+    'recently_updated_badge' => 'Badge récemment mis à jour',
+],
+```
+
+### 4. Modèles Laravel
+
+#### Model : `PostPromotion` avec Support Multilingue
 ```php
 <?php
 
@@ -243,6 +490,32 @@ class PostPromotion extends Model
     public function payment(): BelongsTo
     {
         return $this->belongsTo(Payment::class, 'payment_id');
+    }
+    
+    // Méthodes de traduction
+    public function getTypeLabel(): string
+    {
+        return t("premium_ads.{$this->promotion_type}");
+    }
+    
+    public function getStatusLabel(): string
+    {
+        return t("premium_ads.promotion_{$this->status}");
+    }
+    
+    public function getTimeRemainingLabel(): string
+    {
+        if ($this->status !== 'active') {
+            return $this->getStatusLabel();
+        }
+        
+        $days = $this->getDaysRemaining();
+        
+        if ($days > 0) {
+            return t('premium_ads.expires_in', ['days' => $days]);
+        }
+        
+        return t('premium_ads.expired_on', ['date' => $this->end_date->format('d/m/Y')]);
     }
     
     // Scopes
@@ -289,360 +562,65 @@ class PostPromotion extends Model
 }
 ```
 
-#### Extension Model : `Post`
+#### Extension Model : `Package` avec Support Multilingue
 ```php
-// Dans app/Models/Post.php - Ajouter ces méthodes
+// Dans app/Models/Package.php - Ajouter ces méthodes pour gérer les traductions
 
 /**
- * Relations pour les promotions
+ * Obtenir la description avec caractéristiques traduites
  */
-public function promotions()
+public function getDescriptionArrayAttribute(): string
 {
-    return $this->hasMany(PostPromotion::class);
-}
-
-public function activePromotions()
-{
-    return $this->promotions()->active();
-}
-
-/**
- * Vérifications des types de promotion
- */
-public function isBumped(): bool
-{
-    return $this->activePromotions()
-        ->byType('bump')
-        ->exists();
-}
-
-public function isTopAd(): bool
-{
-    return $this->activePromotions()
-        ->byType('top')
-        ->exists();
-}
-
-public function isFeatured(): bool
-{
-    return $this->activePromotions()
-        ->byType('featured')
-        ->exists();
-}
-
-public function isUrgent(): bool
-{
-    return $this->activePromotions()
-        ->byType('urgent')
-        ->exists();
-}
-
-public function isHighlighted(): bool
-{
-    return $this->activePromotions()
-        ->byType('highlight')
-        ->exists();
-}
-
-/**
- * Obtenir la promotion active d'un type
- */
-public function getActivePromotion(string $type): ?PostPromotion
-{
-    return $this->activePromotions()
-        ->byType($type)
-        ->first();
-}
-
-/**
- * Score de priorité pour l'affichage
- */
-public function getPromotionPriority(): int
-{
-    $priority = 0;
+    $locale = app()->getLocale();
+    $baseDescription = data_get($this, "description.{$locale}") 
+        ?? data_get($this, "description.en");
     
-    if ($this->isFeatured()) $priority += 1000;
-    if ($this->isTopAd()) $priority += 500;
-    if ($this->isUrgent()) $priority += 100;
-    if ($this->isBumped()) $priority += 50;
-    if ($this->isHighlighted()) $priority += 25;
+    $features = json_decode($this->promotion_features, true) ?? [];
+    $translatedFeatures = [];
     
-    return $priority;
-}
-```
-
-### 4. Services
-
-#### Service : `PromotionService`
-```php
-<?php
-
-namespace App\Services\PremiumAds;
-
-use App\Models\Post;
-use App\Models\Package;
-use App\Models\PremiumAds\PostPromotion;
-use App\Services\Payment\PaymentService;
-use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
-
-class PromotionService
-{
-    public function __construct(
-        private PaymentService $paymentService
-    ) {}
-    
-    /**
-     * Acheter une promotion pour une annonce
-     */
-    public function purchasePromotion(
-        Post $post, 
-        Package $package, 
-        array $paymentData
-    ): PostPromotion {
-        return DB::transaction(function () use ($post, $package, $paymentData) {
-            // Vérifier les conditions
-            $this->validatePromotionPurchase($post, $package);
-            
-            // Calculer les dates
-            $startDate = now();
-            $endDate = $startDate->copy()->addDays($package->promotion_time);
-            
-            // Traitement du paiement
-            $payment = $this->paymentService->processPayment([
-                'amount' => $package->price,
-                'currency' => $package->currency_code,
-                'description' => "Promotion {$package->short_name} pour annonce #{$post->id}",
-                'metadata' => [
-                    'post_id' => $post->id,
-                    'package_id' => $package->id,
-                    'promotion_type' => $package->short_name
-                ]
-            ] + $paymentData);
-            
-            // Créer la promotion
-            $promotion = PostPromotion::create([
-                'post_id' => $post->id,
-                'package_id' => $package->id,
-                'payment_id' => $payment->id,
-                'promotion_type' => $package->short_name,
-                'start_date' => $startDate,
-                'end_date' => $endDate,
-                'price' => $package->price,
-                'currency_code' => $package->currency_code,
-                'status' => 'active'
-            ]);
-            
-            // Actions spécifiques par type
-            $this->executePromotionActions($promotion);
-            
-            return $promotion;
-        });
-    }
-    
-    /**
-     * Actions spécifiques par type de promotion
-     */
-    private function executePromotionActions(PostPromotion $promotion): void
-    {
-        match ($promotion->promotion_type) {
-            'bump' => $this->executeBumpActions($promotion),
-            'top' => $this->executeTopActions($promotion),
-            'featured' => $this->executeFeaturedActions($promotion),
-            'urgent' => $this->executeUrgentActions($promotion),
-            'highlight' => $this->executeHighlightActions($promotion),
-            default => null
-        };
-    }
-    
-    private function executeBumpActions(PostPromotion $promotion): void
-    {
-        // Actualiser la date de l'annonce
-        $promotion->post->update([
-            'updated_at' => now(),
-            'bumped_at' => now()
-        ]);
-        
-        // Notifier les abonnés de la catégorie
-        $this->notifySubscribers($promotion->post);
-    }
-    
-    private function executeTopActions(PostPromotion $promotion): void
-    {
-        // S'assurer qu'il n'y a pas trop d'annonces TOP simultanées
-        $this->manageTopAdsLimit($promotion);
-    }
-    
-    private function executeFeaturedActions(PostPromotion $promotion): void
-    {
-        // Programmer l'inclusion en newsletter
-        $this->scheduleNewsletterInclusion($promotion->post);
-        
-        // Partage automatique réseaux sociaux
-        $this->scheduleSocialSharing($promotion->post);
-    }
-    
-    /**
-     * Obtenir les packages de promotion disponibles
-     */
-    public function getAvailablePromotionPackages(): Collection
-    {
-        return Package::where('type', 'promotion')
-            ->where('active', true)
-            ->orderBy('price')
-            ->get();
-    }
-    
-    /**
-     * Calculer le prix dynamique (optionnel)
-     */
-    public function calculateDynamicPrice(Post $post, Package $package): float
-    {
-        $basePrice = $package->price;
-        $factors = [];
-        
-        // Facteur demande catégorie
-        $factors['category_demand'] = $this->getCategoryDemandFactor($post->category);
-        
-        // Facteur heure de la journée
-        $factors['time_of_day'] = $this->getTimeOfDayFactor();
-        
-        // Facteur concurrence
-        $factors['competition'] = $this->getCompetitionFactor($post);
-        
-        // Facteur historique utilisateur
-        $factors['user_history'] = $this->getUserHistoryFactor($post->user);
-        
-        return $basePrice * array_product($factors);
-    }
-}
-```
-
-### 5. Contrôleurs
-
-#### Controller : `PromotionController`
-```php
-<?php
-
-namespace App\Http\Controllers\Web\Front\Account;
-
-use App\Http\Controllers\Controller;
-use App\Models\Post;
-use App\Models\Package;
-use App\Services\PremiumAds\PromotionService;
-use Illuminate\Http\Request;
-
-class PromotionController extends Controller
-{
-    public function __construct(
-        private PromotionService $promotionService
-    ) {}
-    
-    /**
-     * Afficher les options de promotion pour une annonce
-     */
-    public function show(Post $post)
-    {
-        $this->authorize('update', $post);
-        
-        $packages = $this->promotionService->getAvailablePromotionPackages();
-        $activePromotions = $post->activePromotions;
-        
-        return view('front.pages.promotion.show', compact('post', 'packages', 'activePromotions'));
-    }
-    
-    /**
-     * Traiter l'achat d'une promotion
-     */
-    public function purchase(Request $request, Post $post)
-    {
-        $this->authorize('update', $post);
-        
-        $validated = $request->validate([
-            'package_id' => 'required|exists:lc_packages,id',
-            'payment_method' => 'required|string',
-            'payment_data' => 'required|array'
-        ]);
-        
-        $package = Package::findOrFail($validated['package_id']);
-        
-        try {
-            $promotion = $this->promotionService->purchasePromotion(
-                $post,
-                $package,
-                $validated['payment_data']
-            );
-            
-            return response()->json([
-                'success' => true,
-                'message' => 'Promotion activée avec succès',
-                'promotion' => $promotion->load('package'),
-                'redirect' => route('posts.show', $post)
-            ]);
-            
-        } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Erreur lors de l\'activation : ' . $e->getMessage()
-            ], 422);
+    foreach ($features as $feature => $value) {
+        if ($value) {
+            $translatedFeatures[] = t("promotion_features.{$feature}");
         }
     }
     
-    /**
-     * API : Obtenir les options de promotion
-     */
-    public function getOptions(Post $post)
-    {
-        $packages = $this->promotionService->getAvailablePromotionPackages();
-        
-        return response()->json([
-            'packages' => $packages->map(function ($package) use ($post) {
-                return [
-                    'id' => $package->id,
-                    'name' => $package->name,
-                    'short_name' => $package->short_name,
-                    'price' => $package->price,
-                    'duration' => $package->promotion_time,
-                    'features' => json_decode($package->promotion_features, true),
-                    'dynamic_price' => $this->promotionService->calculateDynamicPrice($post, $package)
-                ];
-            })
+    if (!empty($translatedFeatures)) {
+        $baseDescription .= '<br><br><strong>' . t('premium_ads.features_included') . ':</strong><br>';
+        $baseDescription .= '• ' . implode('<br>• ', $translatedFeatures);
+    }
+    
+    if ($this->promotion_time) {
+        $baseDescription .= '<br><br><strong>' . t('premium_ads.duration') . ':</strong> ';
+        $baseDescription .= trans_choice('premium_ads.days_duration', $this->promotion_time, [
+            'count' => $this->promotion_time
         ]);
     }
     
-    /**
-     * Statistiques de promotion
-     */
-    public function stats(Post $post)
-    {
-        $this->authorize('view', $post);
-        
-        $promotions = $post->promotions()
-            ->with('package')
-            ->orderBy('created_at', 'desc')
-            ->get();
-            
-        return response()->json([
-            'promotions' => $promotions->map(function ($promotion) {
-                return [
-                    'type' => $promotion->promotion_type,
-                    'package_name' => $promotion->package->name,
-                    'start_date' => $promotion->start_date,
-                    'end_date' => $promotion->end_date,
-                    'days_remaining' => $promotion->getDaysRemaining(),
-                    'views' => $promotion->views_count,
-                    'clicks' => $promotion->clicks_count,
-                    'status' => $promotion->status
-                ];
-            })
-        ]);
-    }
+    return $baseDescription;
+}
+
+/**
+ * Obtenir le nom traduit du package
+ */
+public function getLocalizedName(): string
+{
+    $locale = app()->getLocale();
+    return data_get($this, "name.{$locale}") ?? data_get($this, "name.en") ?? $this->short_name;
+}
+
+/**
+ * Obtenir le nom court traduit
+ */
+public function getLocalizedShortName(): string
+{
+    $locale = app()->getLocale();
+    return data_get($this, "short_name.{$locale}") ?? data_get($this, "short_name.en") ?? '';
 }
 ```
 
-### 6. Affichage Frontend
+### 5. Affichage Frontend avec Traductions
 
-#### Vue : Interface de Sélection
+#### Vue : Interface de Sélection Multilingue
 ```blade
 {{-- resources/views/front/pages/promotion/show.blade.php --}}
 @extends('layouts.master')
@@ -651,8 +629,8 @@ class PromotionController extends Controller
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h1>🚀 Boostez votre annonce</h1>
-            <p class="lead">Donnez plus de visibilité à votre annonce "{{ $post->title }}"</p>
+            <h1>🚀 {{ t('premium_ads.boost_your_ad') }}</h1>
+            <p class="lead">{{ t('premium_ads.select_promotion_for_ad', ['title' => $post->title]) }}</p>
         </div>
     </div>
     
@@ -665,43 +643,34 @@ class PromotionController extends Controller
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h5 class="mb-0">
                             @if($package->short_name === 'featured')
-                                ⭐ {{ $package->name }}
+                                ⭐ {{ $package->getLocalizedName() }}
                             @elseif($package->short_name === 'top')
-                                🔝 {{ $package->name }}
+                                🔝 {{ $package->getLocalizedName() }}
                             @elseif($package->short_name === 'bump')
-                                🔄 {{ $package->name }}
+                                🔄 {{ $package->getLocalizedName() }}
                             @elseif($package->short_name === 'urgent')
-                                🚨 {{ $package->name }}
+                                🚨 {{ $package->getLocalizedName() }}
                             @elseif($package->short_name === 'highlight')
-                                ✨ {{ $package->name }}
+                                ✨ {{ $package->getLocalizedName() }}
                             @endif
                         </h5>
                         <span class="price">{{ $package->price }}€</span>
                     </div>
                     
                     <div class="card-body">
-                        <p>{{ $package->description }}</p>
-                        
-                        <div class="features">
-                            <strong>Durée :</strong> {{ $package->promotion_time }} jour(s)<br>
-                            
-                            @php $features = json_decode($package->promotion_features, true) @endphp
-                            @if($features)
-                                <strong>Avantages :</strong>
-                                <ul class="list-unstyled mt-2">
-                                    @foreach($features as $feature => $value)
-                                        @if($value)
-                                            <li>✓ {{ ucfirst(str_replace('_', ' ', $feature)) }}</li>
-                                        @endif
-                                    @endforeach
-                                </ul>
-                            @endif
+                        <div class="description">
+                            {!! $package->description_array !!}
                         </div>
                         
-                        <button class="btn btn-primary btn-block purchase-btn" 
+                        <div class="features mt-3">
+                            <strong>{{ t('premium_ads.duration') }}:</strong> 
+                            {{ trans_choice('premium_ads.days_duration', $package->promotion_time, ['count' => $package->promotion_time]) }}
+                        </div>
+                        
+                        <button class="btn btn-primary btn-block purchase-btn mt-3" 
                                 data-package="{{ $package->id }}"
                                 data-price="{{ $package->price }}">
-                            Activer pour {{ $package->price }}€
+                            {{ t('premium_ads.activate_for', ['price' => $package->price]) }}
                         </button>
                     </div>
                 </div>
@@ -713,7 +682,7 @@ class PromotionController extends Controller
             {{-- Aperçu de l'annonce --}}
             <div class="card">
                 <div class="card-header">
-                    <h5>Aperçu de votre annonce</h5>
+                    <h5>{{ t('premium_ads.ad_preview') }}</h5>
                 </div>
                 <div class="card-body">
                     <div id="post-preview" class="post-preview">
@@ -726,14 +695,13 @@ class PromotionController extends Controller
             @if($activePromotions->count() > 0)
             <div class="card mt-3">
                 <div class="card-header">
-                    <h5>Promotions actives</h5>
+                    <h5>{{ t('premium_ads.active_promotions') }}</h5>
                 </div>
                 <div class="card-body">
                     @foreach($activePromotions as $promotion)
                     <div class="active-promotion mb-2">
-                        <strong>{{ ucfirst($promotion->promotion_type) }}</strong><br>
-                        <small>Expire le {{ $promotion->end_date->format('d/m/Y') }}</small>
-                        <small>({{ $promotion->getDaysRemaining() }} jours restants)</small>
+                        <strong>{{ $promotion->getTypeLabel() }}</strong><br>
+                        <small class="text-muted">{{ $promotion->getTimeRemainingLabel() }}</small>
                     </div>
                     @endforeach
                 </div>
@@ -748,7 +716,7 @@ class PromotionController extends Controller
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Finaliser l'achat</h5>
+                <h5 class="modal-title">{{ t('premium_ads.finalize_purchase') }}</h5>
                 <button type="button" class="close" data-dismiss="modal">
                     <span>&times;</span>
                 </button>
@@ -781,304 +749,335 @@ $(document).ready(function() {
             package_id: packageId
         }).done(function(html) {
             $('#payment-form').html(html);
+        }).fail(function() {
+            alert('{{ t('premium_ads.error_loading_payment') }}');
         });
     }
+    
+    // Gestion des réponses Ajax avec traductions
+    window.showPromotionSuccess = function(message) {
+        toastr.success(message || '{{ t('premium_ads.promotion_activated') }}');
+    };
+    
+    window.showPromotionError = function(message) {
+        toastr.error(message || '{{ t('premium_ads.promotion_error') }}');
+    };
 });
 </script>
 @endpush
 ```
 
-### 7. Algorithme d'Affichage
+#### Composant de Badge Multilingue
+```blade
+{{-- resources/views/front/partials/promotion-badges.blade.php --}}
+@if($post->activePromotions->count() > 0)
+    <div class="promotion-badges">
+        @foreach($post->activePromotions as $promotion)
+            @switch($promotion->promotion_type)
+                @case('featured')
+                    <span class="badge badge-featured">
+                        ⭐ {{ t('premium_ads.featured') }}
+                    </span>
+                    @break
+                    
+                @case('top')
+                    <span class="badge badge-top">
+                        🔝 {{ t('premium_ads.top_ad') }}
+                    </span>
+                    @break
+                    
+                @case('urgent')
+                    <span class="badge badge-urgent">
+                        🚨 {{ t('premium_ads.urgent') }}
+                    </span>
+                    @break
+                    
+                @case('bump_up')
+                    <span class="badge badge-bumped">
+                        🔄 {{ t('premium_ads.recently_updated') }}
+                    </span>
+                    @break
+                    
+                @case('highlight')
+                    <span class="badge badge-highlight">
+                        ✨ {{ t('premium_ads.highlight') }}
+                    </span>
+                    @break
+            @endswitch
+        @endforeach
+    </div>
+@endif
+```
 
-#### Service : `PostDisplayService`
+### 6. Notifications et Emails Multilingues
+
+#### Notification : `PromotionExpiringNotification`
+```php
+<?php
+
+namespace App\Notifications;
+
+use Illuminate\Notifications\Notification;
+use Illuminate\Notifications\Messages\MailMessage;
+use App\Models\PremiumAds\PostPromotion;
+
+class PromotionExpiringNotification extends Notification
+{
+    public function __construct(
+        private PostPromotion $promotion
+    ) {}
+    
+    public function via($notifiable): array
+    {
+        return ['mail', 'database'];
+    }
+    
+    public function toMail($notifiable): MailMessage
+    {
+        // Utiliser la langue de l'utilisateur
+        app()->setLocale($notifiable->preferred_locale ?? 'en');
+        
+        return (new MailMessage)
+            ->subject(t('premium_ads.promotion_expiring_subject'))
+            ->greeting(t('premium_ads.greeting', ['name' => $notifiable->name]))
+            ->line(t('premium_ads.promotion_expiring_message', [
+                'type' => $this->promotion->getTypeLabel(),
+                'title' => $this->promotion->post->title,
+                'days' => $this->promotion->getDaysRemaining()
+            ]))
+            ->action(t('premium_ads.extend_promotion'), route('posts.promote', $this->promotion->post))
+            ->line(t('premium_ads.promotion_expiring_footer'));
+    }
+    
+    public function toArray($notifiable): array
+    {
+        app()->setLocale($notifiable->preferred_locale ?? 'en');
+        
+        return [
+            'title' => t('premium_ads.promotion_expiring_title'),
+            'message' => t('premium_ads.promotion_expiring_message', [
+                'type' => $this->promotion->getTypeLabel(),
+                'title' => $this->promotion->post->title,
+                'days' => $this->promotion->getDaysRemaining()
+            ]),
+            'promotion_id' => $this->promotion->id,
+            'post_id' => $this->promotion->post_id,
+        ];
+    }
+}
+```
+
+#### Service : `MultilingualPromotionService`
 ```php
 <?php
 
 namespace App\Services\PremiumAds;
 
 use App\Models\Post;
-use Illuminate\Database\Eloquent\Builder;
+use App\Models\Package;
+use App\Models\PremiumAds\PostPromotion;
+use Illuminate\Support\Facades\DB;
 
-class PostDisplayService
+class MultilingualPromotionService extends PromotionService
 {
     /**
-     * Appliquer l'ordre de priorité aux annonces
+     * Obtenir les packages avec traductions pour l'utilisateur
      */
-    public function applyPromotionOrdering(Builder $query): Builder
+    public function getLocalizedPromotionPackages($user = null): Collection
     {
-        return $query->addSelect([
-            // Calculer le score de priorité
-            'promotion_priority' => function ($subQuery) {
-                $subQuery->selectRaw('
-                    COALESCE(
-                        (SELECT 
-                            CASE 
-                                WHEN pp.promotion_type = "featured" THEN 1000
-                                WHEN pp.promotion_type = "top" THEN 500  
-                                WHEN pp.promotion_type = "urgent" THEN 100
-                                WHEN pp.promotion_type = "bump" THEN 50
-                                WHEN pp.promotion_type = "highlight" THEN 25
-                                ELSE 0
-                            END
-                        FROM lc_post_promotions pp 
-                        WHERE pp.post_id = lc_posts.id 
-                        AND pp.status = "active"
-                        AND pp.start_date <= NOW() 
-                        AND pp.end_date >= NOW()
-                        ORDER BY 
-                            CASE pp.promotion_type
-                                WHEN "featured" THEN 1
-                                WHEN "top" THEN 2  
-                                WHEN "urgent" THEN 3
-                                WHEN "bump" THEN 4
-                                WHEN "highlight" THEN 5
-                            END
-                        LIMIT 1), 0)
-                ');
-            }
-        ])->orderByDesc('promotion_priority')
-          ->orderByDesc('created_at');
-    }
-    
-    /**
-     * Obtenir les annonces pour la page d'accueil
-     */
-    public function getHomepagePosts(int $limit = 20)
-    {
-        return Post::with(['activePromotions', 'category', 'user'])
-            ->where('reviewed_at', '>', now()->subDays(30))
-            ->when(true, function ($query) {
-                return $this->applyPromotionOrdering($query);
+        $locale = $user?->preferred_locale ?? app()->getLocale();
+        
+        return Package::where('type', 'promotion')
+            ->where('active', true)
+            ->get()
+            ->map(function ($package) use ($locale) {
+                // Préparer les données traduites
+                $package->localized_name = data_get($package, "name.{$locale}") 
+                    ?? data_get($package, "name.en");
+                $package->localized_description = data_get($package, "description.{$locale}") 
+                    ?? data_get($package, "description.en");
+                $package->localized_short_name = data_get($package, "short_name.{$locale}") 
+                    ?? data_get($package, "short_name.en");
+                
+                return $package;
             })
-            ->limit($limit)
-            ->get();
+            ->sortBy('price');
     }
     
     /**
-     * Obtenir les annonces d'une catégorie
+     * Générer une description de promotion traduite
      */
-    public function getCategoryPosts(int $categoryId, array $filters = [])
+    public function generatePromotionDescription(Package $package, string $locale = null): string
     {
-        $query = Post::with(['activePromotions', 'category', 'user'])
-            ->where('category_id', $categoryId);
-            
-        // Appliquer les filtres
-        foreach ($filters as $field => $value) {
-            if ($value !== null) {
-                $query->where($field, $value);
+        $locale = $locale ?? app()->getLocale();
+        app()->setLocale($locale);
+        
+        $description = data_get($package, "description.{$locale}") 
+            ?? data_get($package, "description.en");
+        
+        $features = json_decode($package->promotion_features, true) ?? [];
+        $translatedFeatures = [];
+        
+        foreach ($features as $feature => $value) {
+            if ($value) {
+                $translatedFeatures[] = t("promotion_features.{$feature}");
             }
         }
         
-        return $this->applyPromotionOrdering($query)->paginate(20);
+        if (!empty($translatedFeatures)) {
+            $description .= "\n\n" . t('premium_ads.features_included') . ":\n";
+            $description .= "• " . implode("\n• ", $translatedFeatures);
+        }
+        
+        if ($package->promotion_time) {
+            $description .= "\n\n" . t('premium_ads.duration') . ": ";
+            $description .= trans_choice('premium_ads.days_duration', $package->promotion_time, [
+                'count' => $package->promotion_time
+            ]);
+        }
+        
+        return $description;
+    }
+    
+    /**
+     * Obtenir les options de promotion pour l'API
+     */
+    public function getPromotionOptionsForApi(Post $post, string $locale = null): array
+    {
+        $locale = $locale ?? app()->getLocale();
+        app()->setLocale($locale);
+        
+        $packages = $this->getLocalizedPromotionPackages($post->user);
+        
+        return $packages->map(function ($package) use ($post, $locale) {
+            return [
+                'id' => $package->id,
+                'type' => $package->short_name,
+                'name' => $package->localized_name,
+                'short_name' => $package->localized_short_name,
+                'description' => $this->generatePromotionDescription($package, $locale),
+                'price' => $package->price,
+                'duration_days' => $package->promotion_time,
+                'features' => json_decode($package->promotion_features, true),
+                'currency' => $package->currency_code,
+                'dynamic_price' => $this->calculateDynamicPrice($post, $package),
+                'available' => !$post->activePromotions()
+                    ->byType($package->short_name)
+                    ->exists(),
+                'labels' => [
+                    'activate_button' => t('premium_ads.activate_for', ['price' => $package->price]),
+                    'duration_label' => trans_choice('premium_ads.days_duration', $package->promotion_time, [
+                        'count' => $package->promotion_time
+                    ]),
+                    'features_title' => t('premium_ads.features_included'),
+                    'price_label' => t('premium_ads.price')
+                ]
+            ];
+        })->toArray();
     }
 }
 ```
 
-### 8. Jobs et Tâches Automatiques
+### 7. Tests Multilingues
 
-#### Job : `ExpirePromotionsJob`
+#### Test : `PromotionMultilingualTest`
 ```php
 <?php
 
-namespace App\Jobs\PremiumAds;
+namespace Tests\Feature\PremiumAds;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
-use App\Models\PremiumAds\PostPromotion;
-use App\Notifications\PromotionExpiringNotification;
-use App\Notifications\PromotionExpiredNotification;
+use Tests\TestCase;
+use App\Models\User;
+use App\Models\Post;
+use App\Models\Package;
+use App\Services\PremiumAds\MultilingualPromotionService;
 
-class ExpirePromotionsJob implements ShouldQueue
+class PromotionMultilingualTest extends TestCase
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    private MultilingualPromotionService $service;
     
-    public function handle(): void
+    protected function setUp(): void
     {
-        // Notifier les promotions qui expirent dans 24h
-        $expiringPromos = PostPromotion::where('status', 'active')
-            ->whereDate('end_date', now()->addDay())
-            ->with(['post.user', 'package'])
-            ->get();
-            
-        foreach ($expiringPromos as $promo) {
-            $promo->post->user->notify(
-                new PromotionExpiringNotification($promo)
-            );
-        }
+        parent::setUp();
+        $this->service = app(MultilingualPromotionService::class);
+    }
+    
+    /** @test */
+    public function packages_are_returned_in_user_preferred_language()
+    {
+        $user = User::factory()->create(['preferred_locale' => 'fr']);
+        $package = Package::factory()->create([
+            'name' => json_encode([
+                'en' => 'Bump Up',
+                'fr' => 'Remonter',
+                'es' => 'Subir'
+            ])
+        ]);
         
-        // Expirer les promotions échues
-        $expiredPromos = PostPromotion::where('status', 'active')
-            ->where('end_date', '<', now())
-            ->with(['post.user', 'package'])
-            ->get();
-            
-        foreach ($expiredPromos as $promo) {
-            $promo->update(['status' => 'expired']);
-            
-            $promo->post->user->notify(
-                new PromotionExpiredNotification($promo)
-            );
-        }
+        $packages = $this->service->getLocalizedPromotionPackages($user);
+        
+        $this->assertEquals('Remonter', $packages->first()->localized_name);
+    }
+    
+    /** @test */
+    public function promotion_description_includes_translated_features()
+    {
+        app()->setLocale('fr');
+        
+        $package = Package::factory()->create([
+            'promotion_features' => json_encode([
+                'fixed_top_position' => true,
+                'homepage_display' => true
+            ])
+        ]);
+        
+        $description = $this->service->generatePromotionDescription($package, 'fr');
+        
+        $this->assertStringContainsString('Position fixe en tête', $description);
+        $this->assertStringContainsString('Affichage page d\'accueil', $description);
+    }
+    
+    /** @test */
+    public function api_returns_localized_promotion_options()
+    {
+        app()->setLocale('es');
+        
+        $post = Post::factory()->create();
+        $options = $this->service->getPromotionOptionsForApi($post, 'es');
+        
+        $this->assertIsArray($options);
+        $this->assertArrayHasKey('labels', $options[0]);
+        $this->assertStringContainsString('€', $options[0]['labels']['activate_button']);
     }
 }
 ```
 
-### 9. Analytics et Rapports
+## 🌍 Résumé de l'Intégration Multilingue
 
-#### Service : `PromotionAnalyticsService`
-```php
-<?php
+### **Fonctionnalités Multilingues Intégrées :**
 
-namespace App\Services\PremiumAds;
+1. **Packages avec JSON multilingue** - Noms, descriptions et caractéristiques traduits
+2. **Fichiers de traduction** - Support complet des 10 langues principales  
+3. **Modèles avec méthodes de traduction** - Getters automatiques selon la locale
+4. **Vues entièrement traduites** - Interface utilisateur adaptée à chaque langue
+5. **Notifications multilingues** - Emails et notifications dans la langue de l'utilisateur
+6. **API localisée** - Réponses traduites selon la langue demandée
+7. **Tests multilingues** - Validation du bon fonctionnement des traductions
 
-use App\Models\PremiumAds\PostPromotion;
-use App\Models\PremiumAds\PromotionAnalytics;
-use Carbon\Carbon;
-use Illuminate\Support\Collection;
+### **Langues Supportées :**
+- 🇬🇧 Anglais (en) - Langue par défaut
+- 🇫🇷 Français (fr) 
+- 🇪🇸 Espagnol (es)
+- 🇸🇦 Arabe (ar)
+- 🇵🇹 Portugais (pt)
+- 🇩🇪 Allemand (de)
+- 🇮🇹 Italien (it)
+- 🇷🇺 Russe (ru)
+- 🇨🇳 Chinois (zh)
+- 🇯🇵 Japonais (ja)
 
-class PromotionAnalyticsService
-{
-    /**
-     * Enregistrer une vue de promotion
-     */
-    public function recordView(PostPromotion $promotion, string $source = 'direct'): void
-    {
-        $promotion->incrementViews();
-        
-        $this->updateDailyAnalytics($promotion, [
-            'impressions' => 1,
-            "source_{$source}" => 1
-        ]);
-    }
-    
-    /**
-     * Enregistrer un clic sur promotion
-     */
-    public function recordClick(PostPromotion $promotion, string $source = 'direct'): void
-    {
-        $promotion->incrementClicks();
-        
-        $this->updateDailyAnalytics($promotion, [
-            'clicks' => 1,
-            "source_{$source}" => 1
-        ]);
-    }
-    
-    /**
-     * Obtenir les statistiques d'une promotion
-     */
-    public function getPromotionStats(PostPromotion $promotion): array
-    {
-        $analytics = PromotionAnalytics::where('promotion_id', $promotion->id)
-            ->orderBy('date')
-            ->get();
-            
-        return [
-            'total_impressions' => $promotion->views_count,
-            'total_clicks' => $promotion->clicks_count,
-            'ctr' => $promotion->views_count > 0 
-                ? round(($promotion->clicks_count / $promotion->views_count) * 100, 2) 
-                : 0,
-            'daily_data' => $analytics->map(function ($day) {
-                return [
-                    'date' => $day->date,
-                    'impressions' => $day->impressions,
-                    'clicks' => $day->clicks,
-                    'sources' => [
-                        'home' => $day->source_home,
-                        'category' => $day->source_category,
-                        'search' => $day->source_search,
-                        'direct' => $day->source_direct
-                    ]
-                ];
-            })
-        ];
-    }
-    
-    /**
-     * Rapport global des performances
-     */
-    public function getGlobalReport(Carbon $startDate, Carbon $endDate): array
-    {
-        $promotions = PostPromotion::whereBetween('start_date', [$startDate, $endDate])
-            ->with(['post', 'package'])
-            ->get();
-            
-        return [
-            'total_promotions' => $promotions->count(),
-            'total_revenue' => $promotions->sum('price'),
-            'by_type' => $promotions->groupBy('promotion_type')->map(function ($group) {
-                return [
-                    'count' => $group->count(),
-                    'revenue' => $group->sum('price'),
-                    'avg_price' => $group->avg('price')
-                ];
-            }),
-            'performance' => [
-                'total_views' => $promotions->sum('views_count'),
-                'total_clicks' => $promotions->sum('clicks_count'),
-                'avg_ctr' => $promotions->avg(function ($promo) {
-                    return $promo->views_count > 0 
-                        ? ($promo->clicks_count / $promo->views_count) * 100 
-                        : 0;
-                })
-            ]
-        ];
-    }
-    
-    private function updateDailyAnalytics(PostPromotion $promotion, array $increments): void
-    {
-        PromotionAnalytics::updateOrCreate(
-            [
-                'promotion_id' => $promotion->id,
-                'date' => now()->toDateString()
-            ],
-            []
-        )->increment($increments);
-    }
-}
-```
-
-## 🚀 Plan d'Implémentation
-
-### Phase 1: Foundation (Semaines 1-2)
-1. ✅ Création des migrations de base de données
-2. ✅ Modèles Laravel et relations
-3. ✅ Configuration des packages premium
-4. ✅ Interface utilisateur basique
-
-### Phase 2: Core Features (Semaines 3-4)
-1. ✅ Service de promotion et logique métier
-2. ✅ Contrôleurs et routes API
-3. ✅ Intégration paiement
-4. ✅ Algorithme d'affichage prioritaire
-
-### Phase 3: Advanced Features (Semaines 5-6)
-1. ✅ Analytics et tracking
-2. ✅ Jobs automatiques et notifications
-3. ✅ Interface admin
-4. ✅ Tests et optimisations
-
-## 📊 Métriques de Succès
-
-### KPIs Techniques
-- Temps de réponse API < 200ms
-- Taux d'erreur < 0.1%
-- Disponibilité > 99.9%
-
-### KPIs Business
-- Taux d'adoption promotions > 15%
-- Revenus additionnels > 20% du CA
-- Satisfaction utilisateurs > 4.5/5
-
-### KPIs Utilisateur
-- Augmentation visibilité annonces +200%
-- Taux de conversion promotions > 3%
-- Réactivations > 40%
+Le module Premium Ads est maintenant **parfaitement intégré au système multilingue de LaraClassified** ! 🌍
 
 ---
 
-*Ce document sera mis à jour au fur et à mesure de l'avancement du développement.*
+*Document mis à jour le 2025-07-06 avec l'intégration complète du système multilingue*
