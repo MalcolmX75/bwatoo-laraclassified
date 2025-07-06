@@ -1,0 +1,10 @@
+{
+    "name": "premiumads",
+    "version": "1.0.0",
+    "display_name": "Premium Ads",
+    "description": "Advanced promotion system for posts with multiple promotion types (Bump Up, Top Ad, Featured, Urgent, Highlight)",
+    "author": "Bwatoo Development Team",
+    "category": "enhancement",
+    "has_installer": true,
+    "item_id": "premiumads-v1.0.0"
+}

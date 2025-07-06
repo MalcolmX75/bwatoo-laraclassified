@@ -1,263 +1,72 @@
-# 🚀 Guide d'Installation - Module Premium Ads
+# 🚀 Guide d'Installation Rapide - Module Premium Ads
 
-## ✅ Statut Actuel
-- ✅ **Fichiers créés** : Tous les fichiers du module sont en place
-- ✅ **Routes ajoutées** : Routes admin configurées
-- ✅ **Services enregistrés** : Services injectés dans le container
-- ⚠️ **Migration en attente** : Base de données à configurer
-- ⚠️ **Interface visible** : Après configuration DB
+## ✅ État Actuel : Opérationnel sur dev.bwatoo.fr
 
-## 📋 Étapes d'Installation
+Le module Premium Ads est entièrement fonctionnel avec :
+- ✅ 5 types de promotions : Bump Up, Top Ad, Featured, Urgent, Highlight
+- ✅ Interface admin complète : https://dev.bwatoo.fr/admin/post_promotions
+- ✅ Plugin visible dans : https://dev.bwatoo.fr/admin/plugins
+- ✅ Mode gratuit activé pour tests
 
-### Étape 1: Configuration Base de Données
+## 🔧 Configuration Réalisée
 
-#### 1.1 Créer le fichier .env
-```bash
-cd /Users/xdream/projets/baoprod/bwatoo-laraclassified/site
-cp .env.example .env
-```
+### Base de Données
+- Table `lc_post_promotions` créée avec toutes les colonnes nécessaires
+- 3 packages de promotion configurés (Bump Up, Featured, Top Ad)
+- Relations avec posts, packages et payments établies
 
-#### 1.2 Configurer la base de données dans .env
-```env
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=bwatoo_laraclassified
-DB_USERNAME=root
-DB_PASSWORD=votre_mot_de_passe
-```
+### Plugin Premium Ads
+- Détecté automatiquement par LaraClassified
+- Options disponibles : Manage Promotions, Statistics, Packages
+- Service Provider chargé et fonctionnel
 
-#### 1.3 Créer la base de données
-```sql
--- Dans MySQL/PhpMyAdmin
-CREATE DATABASE bwatoo_laraclassified CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-```
+### Frontend
+- Ribbons corrigés dans le widget carousel
+- Badges visibles sur toutes les vues (grid, list, carousel)
+- Classes Bootstrap natives utilisées
 
-### Étape 2: Exécuter les Migrations
+## 🎯 Accès Admin
 
-```bash
-cd /Users/xdream/projets/baoprod/bwatoo-laraclassified/site
+- **URL** : https://dev.bwatoo.fr/admin
+- **Login** : manolinis@gmail.com
+- **Password** : admin123
 
-# Générer la clé d'application
-php artisan key:generate
+## 📊 Fonctionnalités Disponibles
 
-# Exécuter toutes les migrations
-php artisan migrate
+1. **Gestion des Promotions** (/admin/post_promotions)
+   - Liste complète avec filtres
+   - Actions en masse (activation, expiration)
+   - Statistiques détaillées
 
-# Vérifier que la table post_promotions existe
-php artisan tinker
->>> DB::select("SHOW TABLES LIKE 'post_promotions'");
-```
+2. **Types de Promotion**
+   - Bump Up : Remonte l'annonce (2€, 7 jours max)
+   - Featured : Badge spécial (10€, 30 jours max)
+   - Top Ad : Zone premium (25€, 30 jours max)
+   - Urgent : Badge urgent (5€, 14 jours max)
+   - Highlight : Surlignage (8€, 30 jours max)
 
-### Étape 3: Alimenter la Base avec des Données Test
+3. **Workflow**
+   - Sélection promotion depuis l'annonce
+   - Choix de la durée
+   - Paiement (gratuit actuellement)
+   - Activation automatique
 
-```bash
-php artisan tinker
-```
+## ⚠️ Note Importante
 
-```php
-// Créer des packages de promotion de base
-use App\Models\Package;
+Le serveur IONOS dev est actuellement plein (100% d'espace disque utilisé). 
+Il est recommandé de :
+- Nettoyer les fichiers temporaires régulièrement
+- Augmenter l'espace disque disponible
+- Ou migrer vers un serveur avec plus de capacité
 
-$packages = [
-    [
-        'type' => 'promotion',
-        'name' => json_encode([
-            'en' => 'Bump Up',
-            'fr' => 'Remonter'
-        ]),
-        'short_name' => json_encode([
-            'en' => 'Bump',
-            'fr' => 'Remonter'
-        ]),
-        'price' => 2.00,
-        'currency_code' => 'USD',
-        'promotion_time' => 7,
-        'pictures_limit' => 5,
-        'expiration_time' => 30,
-        'active' => 1,
-        'lft' => 1,
-        'rgt' => 2,
-        'depth' => 0,
-    ],
-    [
-        'type' => 'promotion',
-        'name' => json_encode([
-            'en' => 'Featured Listing',
-            'fr' => 'Annonce Mise en Avant'
-        ]),
-        'short_name' => json_encode([
-            'en' => 'Featured',
-            'fr' => 'Featured'
-        ]),
-        'price' => 10.00,
-        'currency_code' => 'USD',
-        'promotion_time' => 14,
-        'ribbon' => 'warning',
-        'has_badge' => 1,
-        'pictures_limit' => 10,
-        'expiration_time' => 60,
-        'recommended' => 1,
-        'active' => 1,
-        'lft' => 3,
-        'rgt' => 4,
-        'depth' => 0,
-    ],
-    [
-        'type' => 'promotion',
-        'name' => json_encode([
-            'en' => 'Top Ad',
-            'fr' => 'Annonce en Tête'
-        ]),
-        'short_name' => json_encode([
-            'en' => 'Top',
-            'fr' => 'Tête'
-        ]),
-        'price' => 25.00,
-        'currency_code' => 'USD',
-        'promotion_time' => 30,
-        'ribbon' => 'success',
-        'has_badge' => 1,
-        'pictures_limit' => 15,
-        'expiration_time' => 120,
-        'recommended' => 1,
-        'active' => 1,
-        'lft' => 5,
-        'rgt' => 6,
-        'depth' => 0,
-    ]
-];
+## 📚 Documentation Complète
 
-foreach ($packages as $package) {
-    Package::create($package);
-}
-
-echo "Packages créés avec succès !";
-```
-
-### Étape 4: Vider le Cache
-
-```bash
-# Vider tous les caches
-php artisan cache:clear
-php artisan config:clear
-php artisan route:clear
-php artisan view:clear
-
-# Reconstruire les caches
-php artisan config:cache
-php artisan route:cache
-```
-
-### Étape 5: Accéder à l'Interface Admin
-
-1. **Démarrer le serveur** (si pas déjà fait) :
-   ```bash
-   php artisan serve
-   ```
-
-2. **Se connecter à l'admin** :
-   - URL : `http://localhost:8000/admin`
-   - Login : `manolinis@gmail.com`
-   - Password : `admin123` (ou le mot de passe configuré)
-
-3. **Chercher le menu "Post Promotions"** :
-   - Dans le menu latéral admin
-   - Ou via l'URL directe : `http://localhost:8000/admin/post_promotions`
-
-## 🔍 Vérification de l'Installation
-
-### Vérifier que les Routes Fonctionnent
-```bash
-# Lister toutes les routes admin
-php artisan route:list | grep post_promotions
-```
-
-### Tester le Service
-```bash
-php artisan tinker
-```
-
-```php
-use App\Services\PostPromotionService;
-use App\Models\Post;
-use App\Models\Package;
-
-// Vérifier que le service fonctionne
-$service = app(PostPromotionService::class);
-echo "Service PostPromotionService chargé !";
-
-// Si vous avez des posts, tester la création d'une promotion
-$post = Post::first();
-$package = Package::where('type', 'promotion')->first();
-
-if ($post && $package) {
-    $promotion = $service->createPromotion($post->id, $package->id, 'featured');
-    echo "Promotion test créée : ID " . $promotion->id;
-}
-```
-
-### Vérifier les Fichiers
-```bash
-# Vérifier que tous les fichiers sont bien en place
-ls -la app/Models/PostPromotion.php
-ls -la app/Services/PostPromotionService.php
-ls -la app/Http/Controllers/Web/Admin/PostPromotionController.php
-ls -la database/migrations/22_00_create_post_promotions_table.php
-```
-
-## 🛠️ Configuration Avancée (Optionnel)
-
-### Ajouter la Commande Cron
-Dans `app/Console/Kernel.php`, méthode `schedule()` :
-
-```php
-protected function schedule(Schedule $schedule)
-{
-    // Expirer les promotions automatiquement toutes les heures
-    $schedule->command('promotions:expire')
-        ->hourly()
-        ->withoutOverlapping();
-}
-```
-
-### Tester la Commande
-```bash
-php artisan promotions:expire --dry-run
-```
-
-## 📊 Interface Admin Disponible
-
-Une fois l'installation terminée, vous aurez accès à :
-
-- **Liste des promotions** avec filtres avancés
-- **Création/édition** de promotions
-- **Actions en masse** (activation, expiration)
-- **Statistiques** et analytics
-- **Gestion des états** des promotions
-
-## 🐛 Dépannage
-
-### Problème de Base de Données
-```bash
-# Vérifier la connexion DB
-php artisan tinker
->>> DB::connection()->getPdo();
-```
-
-### Problème de Cache
-```bash
-# Forcer le vidage complet
-php artisan optimize:clear
-```
-
-### Problème de Permissions
-```bash
-# Vérifier les permissions fichiers
-chmod -R 755 storage/
-chmod -R 755 bootstrap/cache/
-```
+La documentation détaillée est disponible dans le dossier `/docs` :
+- **README.md** : Guide utilisateur et présentation
+- **META.md** : Architecture technique détaillée
+- **TODO.md** : Roadmap et prochaines étapes
+- **CAHIER-DES-CHARGES.md** : Spécifications complètes du projet
 
 ---
 
-**Le module sera visible dans l'admin après l'exécution de ces étapes !** 🎉
+**Module développé et opérationnel - Prêt pour la production**

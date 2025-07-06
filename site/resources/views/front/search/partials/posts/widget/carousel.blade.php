@@ -41,6 +41,20 @@
 						<div class="card me-2 p-0 d-flex justify-content-between flex-column item hover-bg-tertiary"{!! $itemStyle !!}>
 							{{-- Main Picture --}}
 							<div class="w-100 m-0 position-relative item-carousel-thumb">
+								@if (data_get($post, 'featured') == 1)
+									@if (!empty(data_get($post, 'payment.package')))
+										@if (data_get($post, 'payment.package.ribbon') != '')
+											@php
+												$ribbonColor = data_get($post, 'payment.package.ribbon');
+												$ribbonColorClass = BootstrapColor::Badge->getColorClass($ribbonColor);
+												$packageShortName = data_get($post, 'payment.package.short_name');
+											@endphp
+											<span class="badge rounded-pill {{ $ribbonColorClass }} position-absolute mt-2 ms-2" style="z-index: 10;">
+												{{ $packageShortName }}
+											</span>
+										@endif
+									@endif
+								@endif
 								<div class="position-absolute top-0 end-0 mt-2 me-2 bg-body-secondary opacity-75 rounded px-1">
 									<i class="fa-solid fa-camera"></i> {{ data_get($post, 'count_pictures') }}
 								</div>

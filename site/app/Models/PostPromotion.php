@@ -479,4 +479,55 @@ class PostPromotion extends BaseModel
 		
 		return $html;
 	}
+	
+	/*
+	|--------------------------------------------------------------------------
+	| BULK ACTIONS FOR ADMIN PANEL
+	|--------------------------------------------------------------------------
+	*/
+	
+	/**
+	 * Bulk activation button for admin panel
+	 */
+	public function bulkActivationButton($xPanel = false): ?string
+	{
+		$tooltip = ' data-bs-toggle="tooltip" title="' . trans('admin.activate_selection') . '"';
+		
+		$out = '<button name="activation" class="bulk-action btn btn-outline-secondary shadow"' . $tooltip . '>';
+		$out .= '<i class="fa-solid fa-toggle-on"></i> ';
+		$out .= trans('admin.activate');
+		$out .= '</button>';
+		
+		return $out;
+	}
+	
+	/**
+	 * Bulk deactivation button for admin panel
+	 */
+	public function bulkDeactivationButton($xPanel = false): ?string
+	{
+		$tooltip = ' data-bs-toggle="tooltip" title="' . trans('admin.expire_selection') . '"';
+		
+		$out = '<button name="deactivation" class="bulk-action btn btn-outline-secondary shadow"' . $tooltip . '>';
+		$out .= '<i class="fa-solid fa-toggle-off"></i> ';
+		$out .= trans('admin.expire');
+		$out .= '</button>';
+		
+		return $out;
+	}
+	
+	/**
+	 * Bulk deletion button for admin panel
+	 */
+	public function bulkDeletionButton($xPanel = false): string
+	{
+		$tooltip = ' data-bs-toggle="tooltip" title="' . trans('admin.delete_selection') . '"';
+		
+		$out = '<button name="deletion" class="bulk-action btn btn-danger shadow"' . $tooltip . '>';
+		$out .= '<i class="fa-solid fa-xmark"></i> ';
+		$out .= trans('admin.delete');
+		$out .= '</button>';
+		
+		return $out;
+	}
 }
