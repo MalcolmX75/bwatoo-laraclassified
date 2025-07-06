@@ -181,30 +181,303 @@ POST /api/v1/mobile/analytics/events    # Tracking mobile
 
 ### 🏠 **Module 1 : Onboarding & Authentication**
 
-#### Features Principales
-- **Quick Tour** : 3-screen introduction value proposition
-- **Phone Auth** : OTP via SMS (pas email obligatoire)
-- **Social Login** : Google, Facebook, Apple (iOS)
-- **Biometric Auth** : TouchID/FaceID/Fingerprint
-- **Guest Mode** : Navigation sans inscription
-
-#### Spécificités Africaines
+#### Smart Onboarding Flow
 ```
-📱 Phone Number First
-- Input avec code pays automatique
-- Validation format local
-- SMS gratuit via partnerships opérateurs
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│  Welcome Screen │───▶│ Country/Language│───▶│  Location Setup │
+│   (App Value)   │    │   Selection     │    │   (GPS/Manual)  │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+         │                       │                       │
+         ▼                       ▼                       ▼
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│ Interactive     │    │  Personalized   │    │ Authentication  │
+│ Tutorial Overlay│    │   Home Feed     │    │ (When Needed)   │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+```
 
-🌍 Multi-Country Setup
-- Sélection pays au premier lancement
-- Auto-détection via IP/GPS
-- Langue interface adaptée
+#### Onboarding Screens Sequence
 
-🎯 Progressive Registration
-- Étape 1: Numéro + nom
-- Étape 2: Photo profil (optionnel)
-- Étape 3: Localisation précise
-- Étape 4: Préférences notifications
+##### **Screen 1: Welcome & Value Proposition**
+```javascript
+const WelcomeScreen = {
+  title: "Bienvenue sur Bwatoo",
+  subtitle: "La plateforme #1 des petites annonces en Afrique",
+  features: [
+    { icon: "🌍", text: "54 pays africains" },
+    { icon: "💳", text: "Paiements Mobile Money" },
+    { icon: "⚡", text: "Fonctionne hors-ligne" },
+    { icon: "🔒", text: "100% sécurisé" }
+  ],
+  cta: "Commencer",
+  skipOption: "Continuer en invité"
+}
+```
+
+##### **Screen 2: Country & Language Selection**
+```javascript
+const CountryLanguageScreen = {
+  autoDetection: {
+    // Via IP geolocation + GPS si autorisé
+    detectCountry: () => IPGeolocation.getCountry(),
+    detectLanguage: () => DeviceInfo.getDeviceLocale()
+  },
+  
+  countrySelection: {
+    searchable: true,
+    popularCountries: ['CI', 'SN', 'CM', 'GH', 'KE', 'NG'],
+    groupedByRegion: {
+      'Afrique de l\'Ouest': ['CI', 'SN', 'ML', 'BF', 'GH'],
+      'Afrique Centrale': ['CM', 'GA', 'CG', 'CF'],
+      'Afrique de l\'Est': ['KE', 'UG', 'TZ', 'RW']
+    }
+  },
+  
+  languageOptions: {
+    primary: ['fr', 'en'],
+    coming_soon: ['ar', 'pt', 'sw'] // Bientôt disponible
+  },
+  
+  benefits: "Voir les annonces de votre région en priorité"
+}
+```
+
+##### **Screen 3: Location Permission & Setup**
+```javascript
+const LocationSetupScreen = {
+  title: "Trouvez les meilleures offres près de chez vous",
+  
+  permissionRequest: {
+    title: "Autoriser la géolocalisation",
+    description: "Pour vous montrer les annonces à proximité",
+    benefits: [
+      "Annonces dans votre quartier",
+      "Calcul automatique des distances",
+      "Suggestions pertinentes"
+    ]
+  },
+  
+  fallbackOptions: {
+    manualEntry: {
+      city: "Sélectionner votre ville",
+      neighborhood: "Quartier (optionnel)"
+    },
+    skipOption: "Passer cette étape"
+  },
+  
+  privacyNote: "Vos données de localisation restent privées"
+}
+```
+
+##### **Screen 4: Interactive Tutorial Overlays**
+```javascript
+const TutorialOverlays = {
+  // Superposés sur la vraie interface
+  overlays: [
+    {
+      target: '#search-bar',
+      title: 'Recherchez facilement',
+      description: 'Tapez ou utilisez la recherche vocale',
+      position: 'bottom',
+      action: 'tap'
+    },
+    {
+      target: '#categories',
+      title: 'Parcourez par catégorie',
+      description: 'Trouvez exactement ce que vous cherchez',
+      position: 'top',
+      action: 'scroll'
+    },
+    {
+      target: '#post-card-promotion',
+      title: 'Annonces en vedette',
+      description: 'Les annonces avec badges sont mises en avant',
+      position: 'left',
+      action: 'highlight'
+    },
+    {
+      target: '#fab-create-post',
+      title: 'Vendez en 2 minutes',
+      description: 'Créez votre annonce rapidement',
+      position: 'top',
+      action: 'tap'
+    }
+  ],
+  
+  progressIndicator: true,
+  skippable: true,
+  autoAdvance: false // User controls progression
+}
+```
+
+#### Smart Authentication Strategy
+
+##### **Guest Mode First** (Recommandé)
+```javascript
+const GuestModeFlow = {
+  // Permet navigation complète sans inscription
+  permissions: {
+    browse: true,
+    search: true,
+    viewDetails: true,
+    saveToWishlist: false, // Prompt login
+    contact: false,        // Prompt login
+    createPost: false      // Prompt login
+  },
+  
+  // Conversion points stratégiques
+  authPrompts: [
+    {
+      trigger: 'save_to_wishlist',
+      message: 'Créez un compte pour sauvegarder vos favoris',
+      style: 'gentle'
+    },
+    {
+      trigger: 'contact_seller',
+      message: 'Connectez-vous pour contacter le vendeur',
+      style: 'action_required'
+    },
+    {
+      trigger: 'create_post',
+      message: 'Vendez vos objets en créant un compte',
+      style: 'value_proposition'
+    }
+  ]
+}
+```
+
+##### **Progressive Authentication**
+```javascript
+const ProgressiveAuth = {
+  step1_phone: {
+    title: "Votre numéro de téléphone",
+    benefits: [
+      "Recevez des alertes sur vos annonces",
+      "Les acheteurs peuvent vous contacter",
+      "Sécurisez votre compte"
+    ],
+    validation: {
+      autoDetectCarrier: true, // Orange, MTN, etc.
+      smsVerification: true
+    }
+  },
+  
+  step2_profile: {
+    title: "Finalisez votre profil",
+    fields: {
+      firstName: { required: true },
+      lastName: { required: false },
+      photo: { 
+        required: false,
+        camera: true,
+        gallery: true,
+        placeholder: 'avatar_generated' // Avatar basé sur initiales
+      }
+    }
+  },
+  
+  step3_preferences: {
+    title: "Personnalisez votre expérience",
+    options: {
+      notifications: {
+        newMessages: { default: true },
+        priceDrops: { default: true },
+        similarPosts: { default: false }
+      },
+      privacy: {
+        showPhoneNumber: { default: false },
+        allowDirectCall: { default: true }
+      }
+    }
+  }
+}
+```
+
+#### Smart Country/Location Detection
+
+##### **Multi-Layer Detection Strategy**
+```javascript
+const SmartLocationDetection = {
+  // Couche 1: IP Geolocation (Immediate)
+  ipGeolocation: async () => {
+    const response = await fetch('https://ip-api.com/json/');
+    const data = await response.json();
+    return {
+      country: data.countryCode,
+      city: data.city,
+      confidence: 0.7
+    };
+  },
+  
+  // Couche 2: GPS (If permitted)
+  gpsLocation: async () => {
+    const position = await getCurrentPosition({
+      enableHighAccuracy: true,
+      timeout: 10000,
+      maximumAge: 300000 // 5 min cache
+    });
+    
+    const geocoded = await reverseGeocode(
+      position.coords.latitude,
+      position.coords.longitude
+    );
+    
+    return {
+      country: geocoded.countryCode,
+      city: geocoded.city,
+      neighborhood: geocoded.subLocality,
+      confidence: 0.95
+    };
+  },
+  
+  // Couche 3: Device Locale
+  deviceLocale: () => {
+    const locale = DeviceInfo.getDeviceLocale();
+    return {
+      language: locale.split('-')[0],
+      region: locale.split('-')[1],
+      confidence: 0.5
+    };
+  },
+  
+  // Algorithme de fusion intelligent
+  smartFusion: (sources) => {
+    const weightedAverage = sources
+      .sort((a, b) => b.confidence - a.confidence)
+      .slice(0, 2); // Top 2 sources
+      
+    return {
+      country: weightedAverage[0].country,
+      city: weightedAverage[0].city,
+      language: weightedAverage.find(s => s.language)?.language || 'fr',
+      confidence: Math.max(...weightedAverage.map(s => s.confidence))
+    };
+  }
+}
+```
+
+#### Spécificités Africaines Enhanced
+```
+🎯 Smart Country Prioritization
+- Top 5 pays par région affichés en premier
+- Drapeaux + noms locaux pour reconnaissance
+- "Pays populaires" basé sur analytics
+
+📱 Language Intelligence
+- Auto-detect système + région
+- Fallback intelligent FR/EN selon pays
+- Indication "Bientôt en [langue locale]"
+
+🌍 Regional Optimization
+- Currencies locales préférées
+- Format numéros téléphone adapté
+- Timezone automatique
+- Suggestions villes populaires
+
+🔄 Onboarding Skip & Resume
+- Save progress localement
+- Resume où utilisateur s'est arrêté
+- Option "Configurer plus tard"
+- Tutorials rejouables depuis settings
 ```
 
 ### 📋 **Module 2 : Home & Discovery**
